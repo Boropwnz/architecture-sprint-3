@@ -1,0 +1,53 @@
+@startuml
+title Temperature Control Service Code Diagram
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+interface IDevice {
+  +void TurnOn()
+  +void TurnOff()
+  +void SetTargetTemperature(const double temp)
+  +double GetActualTemperature() const
+  +double GetTargetTemperature() const
+}
+
+class TemperatureController {
+  - bool isOn
+  - double targetTemperature
+  - IDevice* device
+  +void TurnOn()
+  +void TurnOff()
+  +void SetTargetTemperature(const double temp)
+  +double GetActualTemperature() const
+  +double GetTargetTemperature() const
+  +bool IsOn() const
+  +bool SetDevice(IDevice* device)
+}
+
+class TemperatureManager {
+  -TemperatureController* temperatureController 
+  -DatabaseDriver* databaseDriver
+  +SendMessage()
+  +ProcessMessage()
+  -IDevice* RegisterDevice(int id)
+}
+
+interface IMessageHandler {
+  +SendMessage(MessageObject*)
+  +ProcessMessage(MessageObject*)
+}
+
+interface IDatabaseDriver{
+  +bool AddTemperature(double temp)
+}
+
+class DatabaseDriver{
+  +bool AddTemperature(double temp)
+}
+
+TemperatureController --> IDevice
+TemperatureManager --> TemperatureController
+TemperatureManager --> DatabaseDriver
+IMessageHandler <|.. TemperatureManager
+IDatabaseDriver <|.. DatabaseDriver
+@enduml
