@@ -59,7 +59,9 @@
 
 **Диаграмма кода (Code)**
 
-Добавьте одну диаграмму или несколько.
+[Code diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_code.puml)
+
+![C4 Code Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_code.svg)
 
 # Задание 3. Разработка ER-диаграммы
 
