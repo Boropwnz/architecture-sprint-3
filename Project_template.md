@@ -65,13 +65,9 @@
 
 # Задание 3. Разработка ER-диаграммы
 
-Добавьте сюда ER-диаграмму. Она должна отражать ключевые сущности системы, их атрибуты и тип связей между ними.
+[ER diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/ER.puml)
 
-[Link](https://ya.ru/)
-
-```
-markdown
-```
+![ER Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/ER.svg)
 
 # ❌ Задание 4. Создание и документирование API
 
