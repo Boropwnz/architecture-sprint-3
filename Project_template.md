@@ -37,23 +37,31 @@
 
 ### 5. Визуализация контекста системы — диаграмма С4
 
+**Диаграмма контекста (Context)**
+
 [Context diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_context.puml)
 
 ![C4 Context Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_context.svg)
 
 # Задание 2. Проектирование микросервисной архитектуры
 
-**Диаграмма контейнеров (Containers)**
+**Диаграмма контейнера (Container)**
 
-Добавьте диаграмму.
+[Container diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_container.puml)
+
+![C4 Container Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_container.svg)
 
 **Диаграмма компонентов (Components)**
 
-Добавьте диаграмму для каждого из выделенных микросервисов.
+[Components diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_components.puml)
+
+![C4 Components Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_components.svg)
 
 **Диаграмма кода (Code)**
 
-Добавьте одну диаграмму или несколько.
+[Code diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_code.puml)
+
+![C4 Code Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_code.svg)
 
 # Задание 3. Разработка ER-диаграммы
 
