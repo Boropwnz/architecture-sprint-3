@@ -44,6 +44,7 @@
 
 ### 5. Визуализация контекста системы — диаграмма С4
 
+[Context diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_context.puml)
 ![C4 Context Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_context.svg)
 
 # Задание 2. Проектирование микросервисной архитектуры
