@@ -6,13 +6,20 @@ top to bottom direction
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
 
 Person(user, "User", "A user of the temperature control system")
-System(TemperatureControlSystem, "Temperature control system", "System monitoring and controlling temperature")
+Person(admin, "Admin", "Technical specialist")
+
+System_Boundary(TemperatureControlSystem, "Warmhouse", "Warmhouse System") {
+  System(TemperatureControl, "Temperature control system", "System controlling temperature")
+  System(TemperatureMonitor, "Temperature monitoring system", "System monitoring temperature")
+}
 
 System_Ext(sensor, "Temperature sensor", "Hardware temperature measurement sensor")
 System_Ext(controller, "Temperature controller", "Hardware temperature controller device")
 
-Rel(user, TemperatureControlSystem, "Uses the system")
-Rel(sensor, TemperatureControlSystem,"Gets temperature")
-Rel(TemperatureControlSystem,controller,"Sets temperature")
-
+Rel(user, TemperatureControl, "Uses the system")
+Rel(admin, TemperatureControl, "Uses the system")
+Rel(TemperatureMonitor, user, "Uses the system")
+Rel(TemperatureMonitor, admin, "Uses the system")
+Rel(sensor, TemperatureMonitor,"Gets temperature")
+Rel(TemperatureControl, controller,"Sets temperature")
 @enduml
