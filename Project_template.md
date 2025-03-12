@@ -1,7 +1,8 @@
 # Обновление после ревью:
 - [Добавлено](#anchor-point-1) больше домейнов, поддомейнов и контекстов [As Is] в Задание 1.
 - [Добавлен](#anchor-point-2) новый дополнительный список домейнов [To Be] в Задание 1.
-- [Обновлена](#anchor-point-3) ER диаграмма в задании 3: добавлены понятия House и Family. House может иметь несколько Family. User может не иметь Family.
+- [Обновлена](#anchor-point-3) диаграмма контекста монолита [As Is] в Задании 1.
+- [Обновлена](#anchor-point-4) ER диаграмма в задании 3: добавлены понятия House и Family. House может иметь несколько Family. User может не иметь Family.
 
 # Задание 1. Анализ и планирование
 
@@ -80,7 +81,7 @@
 ### 5. Визуализация контекста системы — диаграмма С4
 
 **Диаграмма контекста [As Is] (Context)**
-
+<a name="anchor-point-3"></a>
 [Context diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_context.puml)
 
 ![C4 Context Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_context.svg)
@@ -106,7 +107,7 @@
 ![C4 Code Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/C4_code.svg)
 
 # Задание 3. Разработка ER-диаграммы
-<a name="anchor-point-3"></a>
+<a name="anchor-point-4"></a>
 [ER diagram puml](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/ER.puml)
 
 ![ER Diagram](https://github.com/Boropwnz/architecture-sprint-3/blob/warmhouse/diagrams/ER.svg)
