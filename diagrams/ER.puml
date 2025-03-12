@@ -8,17 +8,26 @@ entity "User" {
   name: text
   phone : text
   password : text
+  family_id : number <<FK>>
+  house_id : number <<FK>>
 }
 
-entity "Device Group"{
-  * group_id : number <<PK>>
+entity "Family" {
+  * family_id : number <<PK>>
   --
   * user_id : number <<FK>>
+  house_id : number <<FK>>
+  name: text
+}
+
+entity "House"{
+  * house_id : number <<PK>>
+  --
   * device_id : number <<FK>>
-    group_name : text
+    house_name : text
     device_type_id : number <<FK>>
     region_id : number <<FK>>
-    adress : text
+    address : text
 }
 
 entity "Device Type" {
@@ -53,8 +62,10 @@ entity Data {
 
 
 
-User ||..o{ "Device Group"
-"Device Group" }o..o{ "Device Type"
+User }|..o{ "House"
+User }|..o| "Family"
+Family }o..o{ "House"
+"House" }o..o{ "Device Type"
 "Device Type" ||..o{ Device
 "Device" }|..o{ "Data Type"
 "Data Type" ||..o{ Data
