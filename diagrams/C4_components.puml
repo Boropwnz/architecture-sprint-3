@@ -1,0 +1,85 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Smart Village Container Diagram
+
+Person(user, "User", "Application user")
+Person(admin, "Admin", "Administrator/Support")
+
+System_Boundary(smartVillageSystem, "Smart Village System") {
+    Container_Boundary(userInteraction, "User Interaction") {
+        Component(apiGateway, "API Gateway", "Java")
+        Component(webApplication, "Web Application", "Java")       
+    }
+    Container_Boundary(broker, "Message Broker") {
+        Component(kafka, "Kafka", "Broker for handling messages")
+    }
+    Container_Boundary(deviceContainer, "Controllable Device Service", "Temperature, Cameras, Doors, Lights and other") {
+        Component(deviceAPI, "Device Service API", "Java", "Process requests")
+        Component(deviceManager, "Device Manager", "Java", "Processes data")
+        ComponentDb(deviceDB, "Device Data", "Postgres", "Store data")
+    }
+    Container_Boundary(programming, "Device Programming") {
+        Component(programmingAPI, "Programming Service API", "Java", "Process requests")
+        Component(programmingManager, "Programming Manager", "Java", "Processes data")
+        ComponentDb(programmingDB, "Programming Data", "Postgres", "Store data")
+    }
+    Container_Boundary(analytics, "Analytics") {
+        Component(analyticsAPI, "Analytics Service API", "Java", "Process requests")
+        Component(analyticsManager, "Analytics Manager", "Java", "Processes data")
+        ComponentDb(analyticsDB, "Analytics Data", "Postgres", "Store data")
+    }
+    Container_Boundary(users, "Users") {
+        Component(usersAPI, "Users Service API", "Java", "")
+        Component(usersAuth, "Users Auth", "Java", "")
+        Component(usersManager, "Users Manager", "Java", "")
+        ComponentDb(usersDB, "Users Data", "Postgres", "Store data")
+    }
+    Container_Boundary(notification, "Notifications") {
+        Component(notificationAPI, "Notifications Service API", "Java", "Process requests")
+        Component(notificationManager, "Notifications Manager", "Java", "Processes data")
+        ComponentDb(notificationDB, "Notifications Data", "Postgres", "Store data")
+    }
+}
+    Container_Boundary(extDeviceContainer, "Hardware Device") {
+        Component_Ext(extDeviceAPI, "Device API", "", "Process requests")
+        Component_Ext(extDeviceFirmware, "Firmware", "", "Control device")
+        Component_Ext(extDevice, "Hardware Device", "Hardware", "")
+    }
+Container_Ext(payment, "Payment System", "Banking", "Handles payments")
+Container_Ext(carrier, "Notifications Carrier", "SMS/Email", "Handles notification delivery")
+
+BiRel_D(user, webApplication, "Work with application")
+BiRel_D(admin, webApplication, "Manage users")
+BiRel_D(webApplication, apiGateway, "Pass requests")
+BiRel_D(apiGateway, kafka, "Exchange data")
+
+BiRel_D(kafka, deviceAPI, "Exchange data")
+BiRel_D(deviceAPI, deviceManager, "Process data")
+BiRel_D(deviceManager, deviceDB, "Exchange data")
+
+BiRel_D(kafka, extDeviceAPI, "Pass signals")
+BiRel_D(extDeviceAPI, extDeviceFirmware, "Pass signals")
+BiRel_D(extDeviceFirmware, extDevice, "Pass commands")
+
+BiRel(kafka, programmingAPI, "Exchange data")
+BiRel(programmingAPI, programmingManager, "Process data")
+BiRel(programmingManager, programmingDB, "Exchange data")
+
+BiRel(kafka, analyticsAPI, "Exchange data")
+BiRel(analyticsAPI, analyticsManager, "Process data")
+BiRel(analyticsManager, analyticsDB, "Exchange data")
+
+BiRel(kafka, usersAPI, "Exchange data")
+BiRel(usersAPI, usersManager, "Exchange data")
+BiRel(usersManager, usersAuth, "Process data")
+BiRel(usersManager, usersDB, "Exchange data")
+
+BiRel(kafka, notificationAPI, "Exchange data")
+BiRel(notificationAPI, notificationManager, "Process data")
+BiRel(notificationManager, notificationDB, "Exchange data")
+
+Rel_L(kafka, payment, "Process Transactions")
+Rel_R(kafka, carrier, "Send Notifications")
+@enduml

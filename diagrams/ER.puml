@@ -1,0 +1,72 @@
+@startuml
+title ER Diagram
+
+entity "User" {
+  * user_id : number <<PK>>
+  --
+  * email : number <<FK>>
+  name: text
+  phone : text
+  password : text
+  family_id : number <<FK>>
+  house_id : number <<FK>>
+}
+
+entity "Family" {
+  * family_id : number <<PK>>
+  --
+  * user_id : number <<FK>>
+  house_id : number <<FK>>
+  name: text
+}
+
+entity "House"{
+  * house_id : number <<PK>>
+  --
+  * device_id : number <<FK>>
+    house_name : text
+    device_type_id : number <<FK>>
+    region_id : number <<FK>>
+    address : text
+}
+
+entity "Device Type" {
+  * device_type_id : number <<PK>>
+  --
+  * device_id : number <<FK>>
+    device_type_name : text
+}
+
+entity Device {
+  * device_id : number <<PK>>
+  --
+  * data_type_id : number <<FK>>
+    device_name : text
+    device_serial : text
+}
+
+entity "Data Type" {
+  * data_type_id : number <<PK>>
+  --
+  * data_id : number <<FK>>
+    data_type_name : text
+}
+
+entity Data {
+  * data_id : number <<PK>>
+  --
+  data_type_id : number <<FK>>
+  data_name : text
+  * value: text
+}
+
+
+
+User }|..o{ "House"
+User }|..o| "Family"
+Family }o..o{ "House"
+"House" }o..o{ "Device Type"
+"Device Type" ||..o{ Device
+"Device" }|..o{ "Data Type"
+"Data Type" ||..o{ Data
+@enduml

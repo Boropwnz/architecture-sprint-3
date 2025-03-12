@@ -1,0 +1,42 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Smart Village Container Diagram
+
+Person(user, "User", "Application user")
+Person(admin, "Admin", "Administrator/Support")
+
+System_Boundary(smartVillageSystem, "Smart Village System") {
+    Container(userInteraction, "User Interaction", "Java", "User interacts with services")
+    ContainerQueue(broker, "Message Broker & Events Storage", "Kafka/Postgres", "Handles messages")
+    Container(users, "User Accounts Microservice & Users Database", "Java/Postgres", "Handles user accounts")
+    Container(temperature, "Temperature Control Microservice & Temperature Database", "Java/Postgres", "Controls temperature devices")
+    Container(cameras, "Camera Control Microservice & Video Database", "Java/Postgres", "Handles cameras and stores video")
+    Container(doors, "Door Control Microservice & Doors Database", "Java/Postgres", "Controls doors and gates")
+    Container(lights, "Light Control Microservice & Lights Database", "Java/Postgres", "Controls light devices")
+    Container(notification, "Notifications Microservice & Notifications Database", "Java/Postgres", "Sends notifications")
+    Container(programming, "Device Programming Microservice & Routines Database", "Java/Postgres", "Handles user routines")
+    Container(analytics, "Analytics Microservice & Database", "Java/Postgres", "Handles data analysis")
+}
+
+Container_Ext(device, "External Devices", "Hardware Device", "Controls device")
+Container_Ext(payment, "Payment System", "Banking", "Handles payments")
+Container_Ext(carrier, "Notifications Carrier", "SMS/Email", "Handles notification delivery")
+
+Rel_D(user, userInteraction, "Working with application")
+Rel_D(admin, userInteraction, "Managing users")
+
+Rel_D(userInteraction, broker, "Signals exchange")
+Rel_R(broker, analytics, "Data operations")
+Rel_D(broker, temperature, "Temperature control")
+Rel_D(broker, cameras, "Cameras control")
+Rel_D(broker, doors, "Doors control")
+Rel_D(broker, lights, "Lights control")
+Rel_R(broker, users, "Users control")
+Rel_L(broker, notification, "Send notifications")
+Rel_L(notification, carrier, "Send notifications")
+Rel_L(broker, programming, "Programming inputs")
+Rel_U(device, broker, "Send data")
+Rel_D(broker, device, "Control device")
+Rel_R(broker, payment, "Send payment data")
+@enduml
